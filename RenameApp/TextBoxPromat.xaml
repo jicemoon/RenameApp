@@ -1,0 +1,33 @@
+﻿<TextBox x:Name="textBox" x:Class="RenameApp.TextBoxPromat"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <TextBox.Resources>
+        <VisualBrush x:Key="HelpBrush" TileMode="None" Opacity="{Binding PromatOpacity, ElementName=textBox}" Stretch="None" AlignmentX="Left">
+            <VisualBrush.Visual>
+                <TextBlock FontStyle="Italic" Text="{Binding PromatString, ElementName=textBox}"/>
+            </VisualBrush.Visual>
+        </VisualBrush>
+    </TextBox.Resources>
+    <TextBox.BorderBrush>
+        <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+            <GradientStop Color="#99ABADB3" Offset="0.05"/>
+            <GradientStop Color="#99E2E3EA" Offset="0.07"/>
+            <GradientStop Color="#99E3E9EF" Offset="1"/>
+        </LinearGradientBrush>
+    </TextBox.BorderBrush>
+    <TextBox.Style>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Text" Value="{x:Null}">
+                    <Setter Property="Background" Value="{StaticResource HelpBrush}"/>
+                </Trigger>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Background" Value="{StaticResource HelpBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </TextBox.Style>
+</TextBox>

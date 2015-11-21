@@ -1,0 +1,49 @@
+﻿<Window x:Class="RenameApp.PreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="重命名预览" Height="450" Width="800" MinHeight="200" MinWidth="300" 
+        Closing="Window_Closing" Icon="renameApp.ico"
+        GotFocus="Window_GotFocus" KeyDown="Window_KeyDown">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MaxWidth="60"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" MinWidth="120" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" MinWidth="120"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Label.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#B2B2B2B2" Offset="0.00"/>
+                    <GradientStop Color="#3F8B8B8B" Offset="0.20"/>
+                    <GradientStop Color="#3F959595" Offset="0.75"/>
+                    <GradientStop Color="#B2B2B2B2" Offset="0.95"/>
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="#" Margin="0,0,2,0" />
+        <Label Grid.Row="0" Grid.Column="1" Width="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource gridSpiderLabelBack}" />
+        <GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Width="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#11b2b2b2" />
+        <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="重命名前" />
+        <Label Grid.Row="0" Grid.Column="3" Width="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="{StaticResource gridSpiderLabelBack}" />
+        <GridSplitter Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Width="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#11b2b2b2" >
+        </GridSplitter>
+        <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="重命名后" ToolTip="如果有重名,会自动添加&quot;(数字)&quot;的后缀" Foreground="#FFF726F7" />
+        <ScrollViewer Name="orderSV" Template="{StaticResource spaceSV}" Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Hidden" 
+                      HorizontalScrollBarVisibility="Visible" ScrollChanged="ScrollViewer_ScrollChanged">
+            <StackPanel x:Name="orderNumList" VerticalAlignment="Stretch" Background="#331B1734"></StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Name="leftSV" Grid.Row="1" Grid.Column="2" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible" ScrollChanged="ScrollViewer_ScrollChanged">
+            <StackPanel x:Name="renameBeforeList" Background="#111414FB" />
+        </ScrollViewer>
+        <ScrollViewer Name="rightSV" Grid.Row="1" Grid.Column="4" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" ScrollChanged="ScrollViewer_ScrollChanged">
+            <StackPanel x:Name="renameAfterList" Background="#11E25CE2" />
+        </ScrollViewer>
+    </Grid>
+</Window>
