@@ -10,7 +10,7 @@ namespace RenameApp
     public partial class RenameSelectSingl:UserControl
     {
         #region 字段
-        private static int rsNum = 0;
+        //private static int rsNum = 0;
         /// <summary>
         /// 指示是否在用已保存的模版初始化
         /// </summary>
