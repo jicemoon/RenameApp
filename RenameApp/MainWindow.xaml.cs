@@ -441,8 +441,10 @@ namespace RenameApp
                             {
                                 if(isIgnore)
                                 {
+                                    //忽略大小写
                                     if(isUseReg)
                                     {
+                                        //使用正则表达式
                                         try
                                         {
                                             tempReg = new Regex(temp.searchString.Text, RegexOptions.IgnoreCase);
@@ -455,6 +457,7 @@ namespace RenameApp
                                     }
                                     else
                                     {
+                                        //不使用正则表达式
                                         tempStr = ignoreCaseReplace(tempStr, temp.searchString.Text, temp.replaceString.Text);
                                     }
                                 }
@@ -505,7 +508,13 @@ namespace RenameApp
             }
             return rtn;
         }
-        //忽略大小写, 进行替换文本
+        /// <summary>
+        /// 忽略大小写, 进行替换文本
+        /// </summary>
+        /// <param name="old">原字符串</param>
+        /// <param name="searchStr">要搜索的字符串</param>
+        /// <param name="replaceStr">要替换的字符串</param>
+        /// <returns></returns>
         private string ignoreCaseReplace(string old, string searchStr, string replaceStr)
         {
             string rtn = "";
@@ -527,6 +536,9 @@ namespace RenameApp
             return rtn;
         }
 
+        /// <summary>
+        /// 确认重命名当前列表中的文件
+        /// </summary>
         private void RenameConfirm()
         {
             //System.Windows.MessageBox.Show("正在重命名, 请稍等....");
@@ -586,6 +598,12 @@ namespace RenameApp
             popupWindowTxt.Text = "重 命 名 完 成...";
             DoubleAnimatonOpacity(1, 0, 1);
         }
+        /// <summary>
+        /// 渐隐/渐显动画
+        /// </summary>
+        /// <param name="from">透明度开始值</param>
+        /// <param name="to">透明度结束值</param>
+        /// <param name="time">整个动画所需时间, 单位为秒</param>
         private void DoubleAnimatonOpacity(double from, double to, double time)
         {
             if(to == 1)
@@ -625,9 +643,10 @@ namespace RenameApp
         //    }
         //    return rtn;
         //}
+
+        //重命名预览
         private void renamePreview()
         {
-            //重命名预览
             if(fileLists.Count > 0)
             {
                 if(renameFolderRoot.Count > 0)
@@ -660,6 +679,7 @@ namespace RenameApp
                 }
                 previewWindow.openWindow(fileLists, afters);
                 previewWindow.Show();
+                previewWindow.Focus();
             }
         }
         #endregion
@@ -834,6 +854,7 @@ namespace RenameApp
             renamePreview();
         }
 
+        //点击 -- 重命名
         private void RenameBtn_Click(object sender, RoutedEventArgs e)
         {
             RenameConfirm();
@@ -885,6 +906,7 @@ namespace RenameApp
                 }
             }
         }
+        //按F5, 对文件列表刷新
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if(!e.IsRepeat && e.Key == Key.F5)
@@ -897,6 +919,7 @@ namespace RenameApp
             }
         }
 
+        //模版列表选项改变时调用
         private void selectMoble_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(IsLoaded && (selectMoble.SelectedItem as ComboBoxItem) != null)
@@ -921,7 +944,7 @@ namespace RenameApp
                 //removeModifyItems();
             }
         }
-
+        //点击 -- 管理模版
         private void manageModels_Click(object sender, RoutedEventArgs e)
         {
             popupWindowTxt.Visibility = System.Windows.Visibility.Collapsed;
@@ -944,7 +967,7 @@ namespace RenameApp
             manageModelList.SelectedIndex = selectIndex;
             DoubleAnimatonOpacity(0, 1, 0.5);
         }
-        //点击"管理模板"中的按钮
+        //点击"管理模板"界面中的按钮
         private void modelManageBtns_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Controls.Button current = e.OriginalSource as System.Windows.Controls.Button;
@@ -1029,6 +1052,7 @@ namespace RenameApp
                 }
             }
         }
+        //点击 -- 清空
         private void clearFileList_Click(object sender, RoutedEventArgs e)
         {
             clearFileLists();
