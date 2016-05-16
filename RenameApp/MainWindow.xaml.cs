@@ -828,6 +828,7 @@ namespace RenameApp
             refreshPreviewLabel();
         }
 
+        //点击 -- 预览
         private void previewBtn_Click(object sender, RoutedEventArgs e)
         {
             renamePreview();
