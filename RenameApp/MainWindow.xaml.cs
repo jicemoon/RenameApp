@@ -609,6 +609,7 @@ namespace RenameApp
                 }
                 previewWindow.openWindow(fileLists, afters);
                 previewWindow.Show();
+                previewWindow.Focus();
                 previewWindow.Activate();
             }
         }
